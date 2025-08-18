@@ -26,7 +26,7 @@ export default function Hero() {
     }, [idx]);
 
     return (
-        <section className="relative w-full overflow-hidden">
+        <section className="relative w-full overflow-hidden border-b border-gray-200 pb-2">
             <div className="relative max-w-screen-xl mx-auto rounded-2xl overflow-hidden bg-[#EDEDED]">
                 <div
                     className="flex h-[600px] sm:h-[460px] md:h-[600px] transition-transform duration-500 ease-out"
@@ -43,22 +43,26 @@ export default function Hero() {
                                 draggable={false}
                             />
 
-                            {/* === Overlay específico por slide === */}
                             {i === 0 && (
-                                <div className="pointer-events-none absolute inset-0 flex items-center justify-start">
-                                    <div className="ml-[700px] text-left">
+                                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                                    <div className="ml-[400px] text-left">
+                                        {/* Shout Out arriba */}
+                                        <span className="uppercase tracking-widest text-sm md:text-base text-black block mb-2 text-center">
+                                            Shout Out
+                                        </span>
+
+                                        {/* Essentials centrado */}
                                         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-black">
                                             Essentials
                                         </h1>
-                                        <div className="mt-4 ml-10 flex items-center gap-4">
-                                            <span className="uppercase tracking-widest text-sm md:text-base text-black">
-                                                Shout Out
-                                            </span>
+
+                                        {/* Botón debajo */}
+                                        <div className="mt-6 flex justify-center">
                                             <a
                                                 href="/catalogo"
                                                 className="inline-block bg-black text-white px-5 py-3 text-sm md:text-base 
-                     rounded-lg pointer-events-auto 
-                     transform transition hover:scale-105 hover:opacity-90"
+            rounded-lg pointer-events-auto 
+            transform transition hover:scale-105 hover:opacity-90"
                                             >
                                                 Ver catálogo
                                             </a>
@@ -70,18 +74,18 @@ export default function Hero() {
                             {i === 1 && (
                                 <div className="pointer-events-none absolute inset-0 flex items-center justify-start">
                                     <div className="ml-[100px] text-left">
+                                        {/* Texto */}
                                         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white drop-shadow-md">
                                             Elegancia en <br /> cada detalle
                                         </h1>
-                                        <div className="mt-4 ml-10 flex items-center gap-4">
-                                            <span className="uppercase tracking-widest text-sm md:text-base text-white">
-                                                Shout Out
-                                            </span>
+
+                                        {/* Botón alineado al inicio */}
+                                        <div className="mt-4">
                                             <a
                                                 href="/catalogo"
                                                 className="inline-block bg-white text-black px-5 py-3 text-sm md:text-base 
-                     rounded-lg pointer-events-auto 
-                     transform transition hover:scale-105"
+            rounded-lg pointer-events-auto 
+            transform transition hover:scale-105"
                                             >
                                                 Ver catálogo
                                             </a>
@@ -89,6 +93,7 @@ export default function Hero() {
                                     </div>
                                 </div>
                             )}
+
 
                             {/* Overlay de texto para la tercera imagen */}
                             {idx === 2 && (
