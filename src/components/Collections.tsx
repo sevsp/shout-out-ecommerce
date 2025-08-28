@@ -42,7 +42,7 @@ export default function Collections() {
 
     return (
         <section className="max-w-screen-xl mx-auto px-4 sm:px-0 mt-5 md:mt-8">
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:mx-5 lg:mx-0">
                 {items.map((it) => (
                     <a key={it.title} href={it.href} className="group block">
                         {/* Imagen con la proporción deseada */}
@@ -57,7 +57,7 @@ export default function Collections() {
                         </div>
 
                         {/* Texto debajo */}
-                        <div className="mt-4">
+                        <div className="mt-2 mb-8">
                             <h3 className="text-lg md:text-xl font-semibold text-slate-900">
                                 {it.title}
                             </h3>

@@ -14,7 +14,7 @@ export default function TopBar() {
             </div>
 
             {/* Barra principal */}
-            <div className="max-w-6xl mx-auto flex items-center justify-center md:justify-between px-4 py-5">
+            <div className="max-w-7xl mx-auto flex items-center justify-center md:justify-between py-5 md:px-5">
                 {/* Logo + nav (nav oculto en móvil) */}
                 <div className="flex items-center gap-6">
                     {/* Logo */}
@@ -22,7 +22,7 @@ export default function TopBar() {
                         <img
                             src={LOGO}
                             alt="Shout Out"
-                            className="h-10 w-auto md:h-10" /* puedes ajustar el tamaño si quieres */
+                            className="h-7 w-auto md:h-7" 
                         />
                     </a>
 
@@ -61,7 +61,7 @@ export default function TopBar() {
                         <i className="fa-brands fa-whatsapp text-lg"></i>
                     </a>
                     <a
-                        href="https://instagram.com/tuusuario"
+                        href="https://instagram.com/shout.outg"
                         target="_blank"
                         rel="noreferrer"
                         className="text-gray-600 hover:text-pink-600 transition-transform hover:scale-110"

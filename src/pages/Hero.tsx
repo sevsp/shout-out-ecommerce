@@ -3,10 +3,9 @@ import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 import home1 from "../assets/HOME.png";
 import home2 from "../assets/HOME2.jpg";
-import home3 from "../assets/HOME3.jpg";
-import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+// import home3 from "../assets/HOME3.jpg";
 
-const SLIDES = [home1, home2, home3];
+const SLIDES = [home1, home2];
 
 export default function Hero() {
     const [idx, setIdx] = useState(0);
@@ -26,7 +25,7 @@ export default function Hero() {
 
     return (
         <section className="relative w-full overflow-hidden pb-2">
-            <div className="relative max-w-screen-xl mx-auto px-4 md:px-0">
+            <div className="relative max-w-screen-xl mx-auto px-4 md:px-5 lg:px-0">
                 <div className="relative rounded-lg overflow-hidden bg-[#EDEDED]">
                     <div
                         className="flex h-[600px] sm:h-[460px] md:h-[600px] transition-transform duration-500 ease-out"
@@ -38,10 +37,10 @@ export default function Hero() {
                                     src={src}
                                     alt={`Hero ${i + 1}`}
                                     className={`w-full h-full select-none ${i === 0
-                                            ? // 📱 En móvil: subimos y ajustamos el eje X
-                                            "object-cover object-[26%_20%] translate-y-[-80px] md:object-[30%] md:translate-y-0"
-                                            : // 💻 En desktop (resto de slides normales)
-                                            "object-cover object-center"
+                                        ? // 📱 En móvil: subimos y ajustamos el eje X
+                                        "object-cover object-[26%_20%] translate-y-[-80px] md:object-[30%] md:translate-y-0"
+                                        : // 💻 En desktop (resto de slides normales)
+                                        "object-cover object-center"
                                         }`}
                                     draggable={false}
                                 />
@@ -100,6 +99,9 @@ export default function Hero() {
                                 {i === 1 && (
                                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center md:justify-start">
                                         <div className="text-center md:text-left px-4 md:ml-[100px]">
+                                            <span className="uppercase tracking-widest text-base text-white block mb-2">
+                                                Shout Out
+                                            </span>
                                             <h1
                                                 className="
                                                         text-4xl 
@@ -116,9 +118,7 @@ export default function Hero() {
                                             <div className="mt-4 flex justify-center md:justify-start">
                                                 <a
                                                     href="/catalogo"
-                                                    className="inline-block bg-white text-black px-5 py-3 text-sm md:text-base 
-                     rounded-lg pointer-events-auto 
-                     transform transition hover:scale-105"
+                                                    className="inline-block bg-white text-black mt-5 px-5 py-3 text-sm md:text-base rounded-lg pointer-events-auto transform transition hover:scale-105"
                                                 >
                                                     Ver catálogo
                                                 </a>
@@ -128,46 +128,17 @@ export default function Hero() {
                                 )}
 
 
-                                {i === 2 && (
+                                {/* {i === 2 && (
                                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                         <div
-                                            className="pointer-events-auto text-center text-white 
-                 px-6 py-8 rounded-2xl 
-                 bg-white/30 backdrop-blur-md 
-                 shadow-lg max-w-[90%] md:max-w-2xl"
+                                            className="pointer-events-auto text-center text-white px-6 py-8 max-w-[90%] md:max-w-2xl"
                                         >
                                             <h1 className="text-3xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg">
-                                                <span className="italic">"Envíos a todo el país"</span>
+                                                <span className="italic">"Tienda totalmente Paraguaya"</span>
                                             </h1>
-
-                                            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-6">
-                                                {/* Botón WhatsApp */}
-                                                <a
-                                                    href="https://wa.me/595XXXXXXXXX"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="flex items-center gap-3 px-6 py-3 rounded-xl 
-                     backdrop-blur-md 
-                     transform transition hover:scale-105"
-                                                >
-                                                    <FaWhatsapp className="text-green-400 text-2xl" />
-                                                </a>
-
-                                                {/* Botón Instagram */}
-                                                <a
-                                                    href="https://instagram.com/tuusuario"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="flex items-center gap-3 px-6 py-3 rounded-xl 
-                    backdrop-blur-md 
-                     transform transition hover:scale-105"
-                                                >
-                                                    <FaInstagram className="text-pink-400 text-2xl" />
-                                                </a>
-                                            </div>
                                         </div>
                                     </div>
-                                )}
+                                )} */}
 
 
                             </div>
