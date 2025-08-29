@@ -1,8 +1,9 @@
-import { useMemo, useState } from "react";
+// src/pages/Catalog.tsx
+import { useMemo, useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { PRODUCTS } from "../data/products";
 import { formatGs } from "../utils/currency";
 import type { Product } from "../types/Products";
-import { Link } from "react-router-dom";
 
 type Filters = { q: string; category: string; min?: number; max?: number };
 
@@ -12,14 +13,31 @@ const getCategories = (items: Product[]) => {
 };
 
 export default function CatalogPage() {
-    const [filters, setFilters] = useState<Filters>({ q: "", category: "Todos" });
+    const location = useLocation();
+
     const categories = useMemo(() => getCategories(PRODUCTS), []);
+
+    // Lee ?category=... del URL y valida que exista
+    const initialCategory = useMemo(() => {
+        const params = new URLSearchParams(location.search);
+        const c = params.get("category");
+        return c && categories.includes(c) ? c : "Todos";
+    }, [location.search, categories]);
+
+    const [filters, setFilters] = useState<Filters>({ q: "", category: initialCategory });
+
+    // Si cambia el query param, sincroniza el filtro
+    useEffect(() => {
+        setFilters(f => ({ ...f, category: initialCategory }));
+    }, [initialCategory]);
 
     const filtered = useMemo(() => {
         const q = filters.q.trim().toLowerCase();
         return PRODUCTS.filter(p => p.active !== false)
             .filter(p => (filters.category === "Todos" ? true : p.category === filters.category))
-            .filter(p => (q ? [p.name, p.category, ...(p.tags ?? [])].join(" ").toLowerCase().includes(q) : true))
+            .filter(p =>
+                q ? [p.name, p.category, ...(p.tags ?? [])].join(" ").toLowerCase().includes(q) : true
+            )
             .filter(p => (typeof filters.min === "number" ? p.priceGs >= filters.min! : true))
             .filter(p => (typeof filters.max === "number" ? p.priceGs <= filters.max! : true));
     }, [filters]);
@@ -46,7 +64,9 @@ export default function CatalogPage() {
                     value={filters.category}
                     onChange={(e) => setFilters(f => ({ ...f, category: e.target.value }))}
                 >
-                    {categories.map(c => <option key={c} value={c}>{c}</option>)}
+                    {categories.map(c => (
+                        <option key={c} value={c}>{c}</option>
+                    ))}
                 </select>
                 <input
                     inputMode="numeric"

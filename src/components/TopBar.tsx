@@ -1,7 +1,12 @@
 // src/components/TopBar.tsx
+import { useState } from "react";
+import { PiListThin } from "react-icons/pi"; // ← icono menú
 import LOGO from "../assets/LOGOBLANCO.png";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 export default function TopBar() {
+    const [open, setOpen] = useState(false);
+
     return (
         <header className="w-full bg-white border-b border-gray-200 mb-5">
             {/* Mensaje arriba */}
@@ -14,10 +19,26 @@ export default function TopBar() {
             </div>
 
             {/* Barra principal */}
-            <div className="max-w-7xl mx-auto flex items-center justify-center md:justify-between py-5 md:px-5">
+            <div className="relative max-w-7xl mx-auto flex items-center justify-center md:justify-between py-5 md:px-5">
+                {/* Botón menú móvil (no afecta el centrado del logo porque es absolute) */}
+                <button
+                    onClick={() => setOpen(v => !v)}
+                    aria-label="Abrir menú"
+                    aria-expanded={open}
+                    aria-pressed={open}
+                    className={`md:hidden absolute left-4 top-1/2 -translate-y-1/2 z-40
+              inline-flex h-10 w-10 items-center justify-center text-gray-900
+              transition-all
+              ${open
+                            ? "rounded-full bg-white/90 backdrop-blur border border-black/10 shadow hover:bg-white"
+                            : "bg-transparent hover:bg-transparent"}`
+                    }
+                >
+                    <PiListThin size={22} />
+                </button>
+
                 {/* Logo + nav (nav oculto en móvil) */}
                 <div className="flex items-center gap-6">
-                    {/* Logo */}
                     <a href="/" className="flex items-center">
                         <img
                             src={LOGO}
@@ -35,16 +56,10 @@ export default function TopBar() {
                             Catálogo
                         </a>
                         <a
-                            href="/sobre"
+                            href="/sobre-nosotros"
                             className="text-gray-600 hover:text-black transition-transform hover:scale-110"
                         >
                             Sobre Nosotros
-                        </a>
-                        <a
-                            href="/contacto"
-                            className="text-gray-600 hover:text-black transition-transform hover:scale-110"
-                        >
-                            Contacto
                         </a>
                     </nav>
                 </div>
@@ -70,6 +85,58 @@ export default function TopBar() {
                         <i className="fa-brands fa-instagram text-lg"></i>
                     </a>
                 </div>
+
+                {/* Panel móvil */}
+                {open && (
+                    <>
+                        {/* backdrop para cerrar tocando fuera */}
+                        <button
+                            className="md:hidden fixed inset-0 z-30 bg-black/10"
+                            aria-hidden
+                            onClick={() => setOpen(false)}
+                        />
+                        <div className="md:hidden absolute left-4 top-full mt-2 z-40 rounded-xl bg-white/95 backdrop-blur border border-black/10 shadow-lg p-2">
+                            <a
+                                href="/catalogo"
+                                onClick={() => setOpen(false)}
+                                className="block rounded-lg px-4 py-2 text-sm hover:bg-black/5"
+                            >
+                                Catálogo
+                            </a>
+                            <a
+                                href="/sobre-nosotros"
+                                onClick={() => setOpen(false)}
+                                className="block rounded-lg px-4 py-2 text-sm hover:bg-black/5"
+                            >
+                                Sobre nosotros
+                            </a>
+                            <div className="mt-2 border-t border-black/10 pt-2">
+                                <div className="flex items-center justify-center gap-3 px-1">
+                                    <a
+                                        href="https://wa.me/595991863176"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label="WhatsApp"
+                                        className="text-black hover:opacity-70"
+                                        onClick={() => setOpen(false)}
+                                    >
+                                        <FaWhatsapp size={20} />
+                                    </a>
+                                    <a
+                                        href="https://instagram.com/shout.outg"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label="Instagram"
+                                        className="text-black hover:opacity-70"
+                                        onClick={() => setOpen(false)}
+                                    >
+                                        <FaInstagram size={20} />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
         </header>
     );

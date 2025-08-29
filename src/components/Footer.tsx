@@ -32,13 +32,13 @@ export default function Footer() {
                         </p>
                         <ul className="mt-3 space-y-1">
                             <li>
-                                <a href="#" className="hover:text-white/100 text-white/80">
+                                <a href="https://instagram.com/shout.outg" target="_blank" className="hover:text-white/100 text-white/80">
                                     Instagram
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-white/100 text-white/80">
-                                    Tiktok
+                                <a href="https://wa.me/595991863176?text=Hola!%20Quiero%20hacer%20una%20consulta" target="_blank" className="hover:text-white/100 text-white/80">
+                                    Whatsapp
                                 </a>
                             </li>
                         </ul>
@@ -51,7 +51,7 @@ export default function Footer() {
                         </p>
                         <ul className="mt-3 space-y-1">
                             <li>
-                                <a href="/sobre" className="hover:text-white/100 text-white/80">
+                                <a href="/sobre-nosotros" className="hover:text-white/100 text-white/80">
                                     Sobre Nosotros
                                 </a>
                             </li>
@@ -75,7 +75,7 @@ export default function Footer() {
                             <a href="#top" className="hover:text-white">
                                 Back to top
                             </a>
-                            <a href="#made" className="hover:text-white">
+                            <a href="https://linkedin.com/in/sebastián-mendieta-3386b1285" target="_blank" className="hover:text-white">
                                 Made by Sebastián Mendieta
                             </a>
                         </div>

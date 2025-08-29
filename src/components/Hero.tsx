@@ -14,6 +14,37 @@ export default function Hero() {
     const next = () => setIdx((p) => (p + 1) % SLIDES.length);
     const prev = () => setIdx((p) => (p - 1 + SLIDES.length) % SLIDES.length);
 
+    const startXRef = useRef<number | null>(null);
+    const touchIdRef = useRef<number | null>(null);
+
+    const onTouchStart = (e: React.TouchEvent) => {
+        const t = e.changedTouches[0];
+        startXRef.current = t.clientX;
+        touchIdRef.current = t.identifier;
+        if (timerRef.current) window.clearInterval(timerRef.current); // pausar autoplay mientras swypeas
+    };
+
+    const onTouchEnd = (e: React.TouchEvent) => {
+        const t =
+            Array.from(e.changedTouches).find(tt => tt.identifier === touchIdRef.current) ??
+            e.changedTouches[0];
+
+        const startX = startXRef.current;
+        startXRef.current = null;
+        touchIdRef.current = null;
+        if (startX == null) return;
+
+        const dx = t.clientX - startX;
+        const THRESHOLD = 40; // px para considerar swipe
+        if (dx <= -THRESHOLD) next();
+        else if (dx >= THRESHOLD) prev();
+
+        // reanudar autoplay
+        if (SLIDES.length > 1) {
+            timerRef.current = window.setInterval(next, 5000);
+        }
+    };
+
     useEffect(() => {
         if (timerRef.current) window.clearInterval(timerRef.current);
         if (SLIDES.length <= 1) return;
@@ -30,7 +61,10 @@ export default function Hero() {
                     <div
                         className="flex h-[600px] sm:h-[460px] md:h-[600px] transition-transform duration-500 ease-out"
                         style={{ transform: `translateX(-${idx * 100}%)` }}
+                        onTouchStart={onTouchStart}
+                        onTouchEnd={onTouchEnd}
                     >
+
                         {SLIDES.map((src, i) => (
                             <div key={i} className="relative min-w-full h-full bg-[#F8F8F7]">
                                 <img
