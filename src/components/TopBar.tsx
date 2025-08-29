@@ -61,14 +61,19 @@ export default function TopBar() {
                         >
                             Sobre Nosotros
                         </a>
+                        <a
+                            href="/contacto"
+                            className="text-gray-600 hover:text-black transition-transform hover:scale-110"
+                        >
+                            Contacto
+                        </a>
                     </nav>
                 </div>
 
                 {/* Iconos derecha (solo >= md) */}
                 <div className="hidden md:flex items-center gap-5 text-sm font-normal">
                     <a
-                        href="https://wa.me/595991863176"
-                        target="_blank"
+                        href="/contacto"
                         rel="noreferrer"
                         className="text-gray-600 hover:text-green-600 transition-transform hover:scale-110"
                         aria-label="WhatsApp"
@@ -110,11 +115,17 @@ export default function TopBar() {
                             >
                                 Sobre nosotros
                             </a>
+                            <a
+                                href="/contacto"
+                                onClick={() => setOpen(false)}
+                                className="block rounded-lg px-4 py-2 text-sm hover:bg-black/5"
+                            >
+                                Contacto
+                            </a>
                             <div className="mt-2 border-t border-black/10 pt-2">
                                 <div className="flex items-center justify-center gap-3 px-1">
                                     <a
-                                        href="https://wa.me/595991863176"
-                                        target="_blank"
+                                        href="/contacto"
                                         rel="noreferrer"
                                         aria-label="WhatsApp"
                                         className="text-black hover:opacity-70"
