@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { PRODUCTS } from "../data/products";
 import { formatGs } from "../utils/currency";
 import type { Product } from "../types/Products";
+import { Link } from "react-router-dom";
 
 type Filters = { q: string; category: string; min?: number; max?: number };
 
@@ -65,25 +66,29 @@ export default function CatalogPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filtered.map(p => (
                     <article key={p.id} className="rounded-lg border border-black/10 overflow-hidden bg-white">
-                        <div className="aspect-[4/3] bg-black/[0.04]">
-                            {p.images?.length ? (
-                                <img
-                                    src={`/products/${encodeURIComponent(p.slug)}/${encodeURIComponent(p.images[0])}`}
-                                    alt={p.name}
-                                    className="w-full h-full object-cover"
-                                    loading="lazy"
-                                    decoding="async"
-                                />
-                            ) : (
-                                <div className="flex items-center justify-center h-full text-black/40">
-                                    Sin imagen
-                                </div>
-                            )}
-                        </div>
+                        <Link to={`/producto/${p.slug}`} className="block">
+                            <div className="aspect-[4/3] bg-black/[0.04]">
+                                {p.images?.length ? (
+                                    <img
+                                        src={`/products/${encodeURIComponent(p.slug)}/${encodeURIComponent(p.images[0])}`}
+                                        alt={p.name}
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                ) : (
+                                    <div className="flex items-center justify-center h-full text-black/40">
+                                        Sin imagen
+                                    </div>
+                                )}
+                            </div>
+                        </Link>
                         <div className="p-4">
-                            <h3 className="font-medium leading-tight">{p.name}</h3>
+                            <Link to={`/producto/${p.slug}`} className="hover:underline">
+                                <h3 className="font-medium leading-tight">{p.name}</h3>
+                            </Link>
                             <p className="text-sm text-black/60">{p.category}</p>
-                            <div className="mt-3 inline-flex items-center gap-2 rounded-lg bg-black text-white px-3 py-1 text-sm">
+                            <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-black text-white px-3 py-1 text-sm">
                                 <span>{formatGs(p.priceGs)}</span>
                             </div>
                         </div>

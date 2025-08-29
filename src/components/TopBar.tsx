@@ -3,11 +3,11 @@ import LOGO from "../assets/LOGOBLANCO.png";
 
 export default function TopBar() {
     return (
-        <header className="w-full bg-white">
+        <header className="w-full bg-white border-b border-gray-200 mb-5">
             {/* Mensaje arriba */}
-            <div className="w-full border-b border-gray-200 text-center text-xs py-2">
+            <div className="w-ful text-center text-xs py-2 bg-black">
                 <p>
-                    <span className="font-semibold">
+                    <span className="font-semibold text-white">
                         🚫 Todavía no contamos con pasarela de pagos online. Todos los pedidos se gestionan exclusivamente por WhatsApp 🚫
                     </span>
                 </p>
@@ -22,27 +22,27 @@ export default function TopBar() {
                         <img
                             src={LOGO}
                             alt="Shout Out"
-                            className="h-7 w-auto md:h-7" 
+                            className="h-7 w-auto md:h-7 transition-transform duration-200 hover:scale-110"
                         />
                     </a>
 
                     {/* Navegación (solo >= md) */}
-                    <nav className="hidden md:flex items-center gap-6 text-sm font-normal">
+                    <nav className="hidden md:flex items-center gap-6 text-sm font-normal pt-4">
                         <a
                             href="/catalogo"
-                            className="text-gray-600 hover:text-black hover:underline underline-offset-4 decoration-1 transition-colors"
+                            className="text-gray-600 hover:text-black transition-transform hover:scale-110"
                         >
                             Catálogo
                         </a>
                         <a
                             href="/sobre"
-                            className="text-gray-600 hover:text-black hover:underline underline-offset-4 decoration-1 transition-colors"
+                            className="text-gray-600 hover:text-black transition-transform hover:scale-110"
                         >
                             Sobre Nosotros
                         </a>
                         <a
                             href="/contacto"
-                            className="text-gray-600 hover:text-black hover:underline underline-offset-4 decoration-1 transition-colors"
+                            className="text-gray-600 hover:text-black transition-transform hover:scale-110"
                         >
                             Contacto
                         </a>
