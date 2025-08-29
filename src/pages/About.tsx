@@ -56,8 +56,7 @@ export default function AboutPage() {
 
                     <div className="flex flex-wrap items-center gap-3">
                         <a
-                            href="https://wa.me/595991863176?text=Hola!%20Quiero%20hacer%20una%20consulta"
-                            target="_blank"
+                            href="/contacto"
                             rel="noreferrer"
                             aria-label="WhatsApp"
                             title="WhatsApp"

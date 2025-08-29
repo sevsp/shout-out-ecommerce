@@ -37,7 +37,7 @@ export default function Footer() {
                                 </a>
                             </li>
                             <li>
-                                <a href="https://wa.me/595991863176?text=Hola!%20Quiero%20hacer%20una%20consulta" target="_blank" className="hover:text-white/100 text-white/80">
+                                <a href="/contacto" className="hover:text-white/100 text-white/80">
                                     Whatsapp
                                 </a>
                             </li>

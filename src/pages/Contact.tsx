@@ -12,7 +12,7 @@ type Contact = {
 
 const CONTACTS: Contact[] = [
     { label: "Sebastián Mendieta", phone: "595991863176", avatarUrl: perfil1 },
-    { label: "Sebastián Struway", phone: "59597316147", avatarUrl: perfil2 }, // poné aquí el número real
+    { label: "Sebastián Struway", phone: "595971316147", avatarUrl: perfil2 },
 ];
 
 const buildWA = (phone: string, text = "Hola! Quiero hacer una consulta") =>
