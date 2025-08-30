@@ -47,10 +47,14 @@ export default function ProductDetail() {
             </section>
         );
     }
-
-    const whatsHref = `https://wa.me/?text=${encodeURIComponent(
-        `Hola! Quiero pedir ${product.name} (${product.id}) por ${formatGs(product.priceGs)}`
+    
+    // Mensaje que queremos mantener al pasar por /contacto
+    const waText = `Hola! Quiero pedir ${product.name} por ${formatGs(
+        product.priceGs
     )}`;
+
+    // Redirige a /contacto llevando el texto prearmado
+    const contactHref = `/contacto?text=${encodeURIComponent(waText)}`;
 
     return (
         <section className="max-w-screen-2xl mx-auto px-4 md:px-6 lg:px-8 py-8">
@@ -118,14 +122,12 @@ export default function ProductDetail() {
                     </p>
 
                     <div className="mt-5 flex items-center gap-3">
-                        <a
-                            href={whatsHref}
-                            target="_blank"
-                            rel="noreferrer"
+                        <Link
+                            to={contactHref}
                             className="inline-flex items-center gap-2 rounded-lg bg-black text-white px-4 py-2 text-sm transition-colors duration-200 hover:bg-[#25D366] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/60"
                         >
                             Pedir por WhatsApp
-                        </a>
+                        </Link>
                         <button
                             onClick={async () => {
                                 const url = window.location.href;

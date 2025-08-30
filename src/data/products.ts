@@ -6,7 +6,7 @@ export const PRODUCTS: Product[] = [
     {
         id: "cadena-serpiente-plateada",
         slug: "cadena-serpiente-plateada",
-        name: "Cadena Serpiente Plateada",
+        name: "Cadena Snake Core",
         category: "Cadenas",
         priceGs: 80000,
         images: ["1.jpg"],
@@ -17,7 +17,7 @@ export const PRODUCTS: Product[] = [
     {
         id: "cadena-simple-oro",
         slug: "cadena-simple-oro",
-        name: "Cadena Simple Oro",
+        name: "Cadena Golden Chain",
         category: "Cadenas",
         priceGs: 90000,
         images: ["1.jpg"],
@@ -28,7 +28,7 @@ export const PRODUCTS: Product[] = [
     {
         id: "cadena-trenzada-plateada",
         slug: "cadena-trenzada-plateada",
-        name: "Cadena Trenzada Plateada",
+        name: "Cadena Web Braid",
         category: "Cadenas",
         priceGs: 80000,
         images: ["1.jpg"],
@@ -41,7 +41,7 @@ export const PRODUCTS: Product[] = [
     {
         id: "pulsera-punk-roja",
         slug: "pulsera-punk-roja",
-        name: "Pulsera Punk Roja",
+        name: "Pulsera Red Pearl",
         category: "Pulseras",
         priceGs: 60000,
         images: ["1.jpg"],
@@ -52,7 +52,7 @@ export const PRODUCTS: Product[] = [
     {
         id: "pulsera-simple-plateada",
         slug: "pulsera-simple-plateada",
-        name: "Pulsera Simple Plateada",
+        name: "Pulsera Urban Minimalist",
         category: "Pulseras",
         priceGs: 55000,
         images: ["1.jpg"],
@@ -63,7 +63,7 @@ export const PRODUCTS: Product[] = [
     {
         id: "pulsera-trenzada-plateada",
         slug: "pulsera-trenzada-plateada",
-        name: "Pulsera Trenzada Plateada",
+        name: "Pulsera Web Braid",
         category: "Pulseras",
         priceGs: 55000,
         images: ["1.jpg"],

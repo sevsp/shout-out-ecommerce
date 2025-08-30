@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import perfil1 from "../assets/perfil1.jpg";
 import perfil2 from "../assets/perfil2.jpg";
+import { useLocation } from "react-router-dom";
 
 type Contact = {
     label: string;
@@ -46,6 +47,12 @@ function Avatar({ name, src }: { name: string; src?: string }) {
 }
 
 export default function ContactPage() {
+    const { search } = useLocation();
+    const params = new URLSearchParams(search);
+
+    const presetText =
+        params.get("text") ?? "Hola! Quiero hacer una consulta";
+
     useEffect(() => {
         document.title = "Contacto";
     }, []);
@@ -62,17 +69,18 @@ export default function ContactPage() {
                         {CONTACTS.map((c) => (
                             <a
                                 key={c.label}
-                                href={buildWA(c.phone)}
+                                href={buildWA(c.phone, presetText)}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="flex items-center justify-between rounded-2xl border border-black/10 bg-white/80
-                           px-5 md:px-6 py-4 md:py-5 hover:bg-black/[0.04] shadow-sm"
+                                className="flex items-center justify-between rounded-2xl border border-black/10 bg-white/80 px-5 md:px-6 py-4 md:py-5 hover:bg-black/[0.04] shadow-sm"
                             >
                                 <div className="flex items-center gap-4">
                                     <Avatar name={c.label} src={c.avatarUrl} />
-                                    <span className="font-medium text-[15px] md:text-base leading-tight">
-                                        {c.label}
-                                    </span>
+                                    <div>
+                                        <div className="text-base md:text-lg font-semibold">
+                                            {c.label}
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <span className="inline-flex items-center gap-2 text-[#25D366] text-[15px] md:text-base">
