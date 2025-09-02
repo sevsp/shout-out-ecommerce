@@ -6,10 +6,12 @@ import CatalogPage from "./pages/Catalog";
 import ProductDetail from "./pages/ProductDetail";
 import AboutPage from "./pages/About";
 import ContactPage from "./pages/Contact";
+import Analytics from "./Analytics";
 
 function App() {
     return (
         <BrowserRouter>
+            <Analytics />
             <TopBar />
 
             <Routes>
