@@ -8,14 +8,12 @@ body {
     color: #000000;
 }
 
-/* ===== Marquee circular (texto + separador) ===== */
 @layer utilities {
     .marquee {
         overflow: hidden;
         background: #000;
         --gap: 2rem;
 
-        /* Velocidad por defecto (desktop) */
         --speed: 50s;
     }
 
@@ -27,7 +25,6 @@ body {
         animation: marquee-x var(--speed) linear infinite;
     }
 
-    /* Cada grupo cubre al menos el viewport para que el siguiente “nazca” a la derecha */
     .marquee__group {
         flex-shrink: 0;
         min-width: 100vw;
@@ -36,11 +33,9 @@ body {
         gap: var(--gap);
         white-space: nowrap;
         padding-block: 0.5rem;
-        /* py-2 */
         padding-inline: 1rem;
     }
 
-    /* Unidad = (texto + separador) */
     .marquee__unit {
         display: inline-flex;
         align-items: center;
@@ -57,10 +52,8 @@ body {
         width: 0.6rem;
         height: 0.8rem;
         background: #fff;
-        /* cambiá a 9999px para punto redondo */
     }
 
-    /* Mover sólo media pista (track = 2× grupo) */
     @keyframes marquee-x {
         from {
             transform: translate3d(0, 0, 0);
@@ -71,7 +64,6 @@ body {
         }
     }
 
-    /* Accesibilidad: reducir movimiento si el usuario lo prefiere */
     @media (prefers-reduced-motion: reduce) {
         .marquee__track {
             animation: none;
@@ -79,22 +71,18 @@ body {
         }
     }
 
-    /* ===== Velocidad por breakpoints ===== */
-    /* Mobile: más rápido */
     @media (max-width: 768px) {
         .marquee {
             --speed: 30s;
         }
     }
 
-    /* Mobile chico (opcional): aún más rápido */
     @media (max-width: 430px) {
         .marquee {
             --speed: 30s;
         }
     }
 
-    /* Sólo en portrait (opcional) */
     @media (orientation: portrait) and (max-width: 768px) {
         .marquee {
             --speed: 10s;

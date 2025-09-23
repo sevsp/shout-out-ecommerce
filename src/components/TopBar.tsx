@@ -1,13 +1,11 @@
-// src/components/TopBar.tsx
 import { useEffect, useState } from "react";
-import { PiListThin } from "react-icons/pi"; // ← icono menú
+import { PiListThin } from "react-icons/pi"; 
 import LOGO from "../assets/LOGOBLANCO.png";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 export default function TopBar() {
     const [open, setOpen] = useState(false);
 
-    // Texto base (podés editarlo acá)
     const aviso =
         "Pedidos unicamente por Whatsapp";
 
@@ -20,29 +18,23 @@ export default function TopBar() {
             const unit = slide.querySelector(".marquee__unit") as HTMLElement | null;
             if (!unit) return;
 
-            // Limpia: deja solo 1 unidad
             slide.querySelectorAll(".marquee__unit:not(:first-child)").forEach(n => n.remove());
 
-            // Rellena el grupo hasta cubrir viewport (+10% buffer)
             const target = Math.ceil(window.innerWidth * 1.1);
             while (slide.scrollWidth < target) {
                 slide.appendChild(unit.cloneNode(true));
             }
 
-            // Deja exactamente 2 grupos y clona el grupo completo
             Array.from(track.querySelectorAll(".marquee__group")).forEach((g, i) => {
                 if (i > 0) g.remove();
             });
 
             const clone = slide.cloneNode(true) as HTMLElement;
-            // Evita IDs duplicados en el clon (importante al re-medir)
             clone.removeAttribute("id");
             clone.setAttribute("aria-hidden", "true");
             track.appendChild(clone);
 
-            // Reinicia la animación de forma limpia (evita desincronización)
             track.style.animation = "none";
-            // Forzar reflow
             void track.offsetHeight;
             track.style.animation = "";
         };
@@ -60,7 +52,6 @@ export default function TopBar() {
             setTimeout(init, 0);
         }
 
-        // Recalcular en resize/orientación
         const onResize = () => rebuild();
         window.addEventListener("resize", onResize);
         window.addEventListener("orientationchange", onResize);
