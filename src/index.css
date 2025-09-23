@@ -44,7 +44,7 @@ body {
     .marquee__unit {
         display: inline-flex;
         align-items: center;
-        gap: 1rem;
+        gap: 2rem;
     }
 
     .marquee__item {
@@ -54,10 +54,9 @@ body {
 
     .marquee__sep {
         display: inline-block;
-        width: 0.5rem;
-        height: 0.5rem;
+        width: 0.6rem;
+        height: 0.8rem;
         background: #fff;
-        border-radius: 2px;
         /* cambiá a 9999px para punto redondo */
     }
 
