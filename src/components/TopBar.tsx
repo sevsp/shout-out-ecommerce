@@ -16,33 +16,61 @@ export default function TopBar() {
         const slide = document.getElementById("marquee-slide");
         if (!track || !slide) return;
 
-        const fillAndClone = () => {
-            // 1) Tomar UNA unidad (texto + separador) como plantilla
+        const rebuild = () => {
             const unit = slide.querySelector(".marquee__unit") as HTMLElement | null;
             if (!unit) return;
 
-            // 2) Limpiar: dejar solo 1 unidad en el grupo base
+            // Limpia: deja solo 1 unidad
             slide.querySelectorAll(".marquee__unit:not(:first-child)").forEach(n => n.remove());
 
-            // 3) Rellenar el grupo con copias de la unidad hasta cubrir el ancho de la ventana (con buffer)
-            const targetWidth = Math.ceil(window.innerWidth * 1.1); // +10% buffer
-            while (slide.scrollWidth < targetWidth) {
+            // Rellena el grupo hasta cubrir viewport (+10% buffer)
+            const target = Math.ceil(window.innerWidth * 1.1);
+            while (slide.scrollWidth < target) {
                 slide.appendChild(unit.cloneNode(true));
             }
 
-            // 4) Dejar EXACTAMENTE 2 grupos en la pista (loop perfecto) y clonar el grupo completo
+            // Deja exactamente 2 grupos y clona el grupo completo
             Array.from(track.querySelectorAll(".marquee__group")).forEach((g, i) => {
                 if (i > 0) g.remove();
             });
-            track.appendChild(slide.cloneNode(true));
+
+            const clone = slide.cloneNode(true) as HTMLElement;
+            // Evita IDs duplicados en el clon (importante al re-medir)
+            clone.removeAttribute("id");
+            clone.setAttribute("aria-hidden", "true");
+            track.appendChild(clone);
+
+            // Reinicia la animación de forma limpia (evita desincronización)
+            track.style.animation = "none";
+            // Forzar reflow
+            void track.offsetHeight;
+            track.style.animation = "";
         };
 
-        fillAndClone();
-        // 5) Recalcular al redimensionar
-        const onResize = () => fillAndClone();
+        const init = () => {
+            rebuild();
+        };
+
+        type DocWithFonts = Document & { fonts?: { ready: Promise<unknown> } };
+
+        const fontsReady = (document as DocWithFonts).fonts?.ready;
+        if (fontsReady) {
+            fontsReady.then(() => init());
+        } else {
+            setTimeout(init, 0);
+        }
+
+        // Recalcular en resize/orientación
+        const onResize = () => rebuild();
         window.addEventListener("resize", onResize);
-        return () => window.removeEventListener("resize", onResize);
+        window.addEventListener("orientationchange", onResize);
+
+        return () => {
+            window.removeEventListener("resize", onResize);
+            window.removeEventListener("orientationchange", onResize);
+        };
     }, []);
+
 
     return (
         <header className="w-full bg-white border-b border-gray-200 mb-5">
