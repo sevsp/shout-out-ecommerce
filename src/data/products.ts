@@ -8,7 +8,7 @@ export const PRODUCTS: Product[] = [
         slug: "cadena-serpiente-plateada",
         name: "Cadena Snake Core",
         category: "Cadenas",
-        priceGs: 80000,
+        priceGs: 60000,
         images: ["1.jpg"],
         description:
             "Cadena estilo serpiente en acero inoxidable. Largo 50 cm. Cierre tipo langosta.",
@@ -19,7 +19,7 @@ export const PRODUCTS: Product[] = [
         slug: "cadena-simple-oro",
         name: "Cadena Golden Chain",
         category: "Cadenas",
-        priceGs: 90000,
+        priceGs: 65000,
         images: ["1.jpg"],
         description:
             "Cadena minimalista de látigo de oro. Largo 50 cm. Cierre tipo langosta.",
@@ -30,7 +30,7 @@ export const PRODUCTS: Product[] = [
         slug: "cadena-trenzada-plateada",
         name: "Cadena Web Braid",
         category: "Cadenas",
-        priceGs: 80000,
+        priceGs: 60000,
         images: ["1.jpg"],
         description:
             "Cadena trenzada (rope) en acero inoxidable. Largo 55 cm. Cierre tipo langosta.",
@@ -43,7 +43,7 @@ export const PRODUCTS: Product[] = [
         slug: "pulsera-punk-roja",
         name: "Pulsera Red Pearl",
         category: "Pulseras",
-        priceGs: 60000,
+        priceGs: 50000,
         images: ["1.jpg"],
         description:
             "Pulsera estilo punk color rojo y plateado. Largo 21 cm. Cierre tipo langosta.",
@@ -54,7 +54,7 @@ export const PRODUCTS: Product[] = [
         slug: "pulsera-simple-plateada",
         name: "Pulsera Urban Minimalist",
         category: "Pulseras",
-        priceGs: 55000,
+        priceGs: 45000,
         images: ["1.jpg"],
         description:
             "Pulsera minimal en acero inoxidable color plateado. Largo 21 cm. Cierre tipo langosta.",
@@ -65,7 +65,7 @@ export const PRODUCTS: Product[] = [
         slug: "pulsera-trenzada-plateada",
         name: "Pulsera Web Braid",
         category: "Pulseras",
-        priceGs: 55000,
+        priceGs: 45000,
         images: ["1.jpg"],
         description:
             "Pulsera trenzada en acero inoxidable 316L. Largo 19 cm. Cierre tipo langosta.",
