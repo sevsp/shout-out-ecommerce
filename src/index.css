@@ -7,3 +7,75 @@ body {
     background: #fff;
     color: #000000;
 }
+
+/* ===== Marquee circular por unidades (texto + separador) ===== */
+@layer utilities {
+    .marquee {
+        overflow: hidden;
+        background: #000;
+        --speed: 10s;
+        /* ↑ más lento, ↓ más rápido */
+        --gap: 2rem;
+        /* espacio entre unidades */
+    }
+
+    /* La pista se mueve una anchura de grupo (100%) */
+    .marquee__track {
+        display: flex;
+        width: max-content;
+        animation: marquee-x var(--speed) linear infinite;
+    }
+
+    /* Cada grupo debe cubrir al menos el viewport para que el siguiente "nazca" a la derecha */
+    .marquee__group {
+        flex-shrink: 0;
+        min-width: 100vw;
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+        padding-block: 0.5rem;
+        /* py-2 */
+        padding-inline: 1rem;
+        gap: var(--gap);
+    }
+
+    /* Unidad = (texto + separador). Clonamos UNIDADES, no solo texto. */
+    .marquee__unit {
+        display: inline-flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .marquee__item {
+        font-weight: 600;
+        color: #fff;
+    }
+
+    /* Separador visual entre unidades */
+    .marquee__sep {
+        display: inline-block;
+        width: 0.6rem;
+        height: 0.8rem;
+        background: #fff;
+        /* cambiá a 9999px para punto redondo */
+    }
+
+    @keyframes marquee-x {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-100%);
+        }
+
+        /* mueve exactamente 1 grupo */
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .marquee__track {
+            animation: none;
+            transform: none;
+        }
+    }
+}

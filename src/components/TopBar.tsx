@@ -1,5 +1,5 @@
 // src/components/TopBar.tsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PiListThin } from "react-icons/pi"; // ← icono menú
 import LOGO from "../assets/LOGOBLANCO.png";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
@@ -7,15 +7,57 @@ import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 export default function TopBar() {
     const [open, setOpen] = useState(false);
 
+    // Texto base (podés editarlo acá)
+    const aviso =
+        "Pedidos unicamente por Whatsapp";
+
+    useEffect(() => {
+        const track = document.getElementById("marquee-track");
+        const slide = document.getElementById("marquee-slide");
+        if (!track || !slide) return;
+
+        const fillAndClone = () => {
+            // 1) Tomar UNA unidad (texto + separador) como plantilla
+            const unit = slide.querySelector(".marquee__unit") as HTMLElement | null;
+            if (!unit) return;
+
+            // 2) Limpiar: dejar solo 1 unidad en el grupo base
+            slide.querySelectorAll(".marquee__unit:not(:first-child)").forEach(n => n.remove());
+
+            // 3) Rellenar el grupo con copias de la unidad hasta cubrir el ancho de la ventana (con buffer)
+            const targetWidth = Math.ceil(window.innerWidth * 1.1); // +10% buffer
+            while (slide.scrollWidth < targetWidth) {
+                slide.appendChild(unit.cloneNode(true));
+            }
+
+            // 4) Dejar EXACTAMENTE 2 grupos en la pista (loop perfecto) y clonar el grupo completo
+            Array.from(track.querySelectorAll(".marquee__group")).forEach((g, i) => {
+                if (i > 0) g.remove();
+            });
+            track.appendChild(slide.cloneNode(true));
+        };
+
+        fillAndClone();
+        // 5) Recalcular al redimensionar
+        const onResize = () => fillAndClone();
+        window.addEventListener("resize", onResize);
+        return () => window.removeEventListener("resize", onResize);
+    }, []);
+
     return (
         <header className="w-full bg-white border-b border-gray-200 mb-5">
-            {/* Mensaje arriba */}
-            <div className="w-ful text-center text-xs py-2 bg-black">
-                <p>
-                    <span className="font-semibold text-white">
-                        🚫 Todavía no contamos con pasarela de pagos online. Todos los pedidos se gestionan exclusivamente por WhatsApp 🚫
-                    </span>
-                </p>
+            {/* Mensaje arriba - Marquee por UNIDADES (texto + separador) */}
+            <div className="w-full marquee">
+                <div id="marquee-track" className="marquee__track text-xs">
+                    {/* Grupo base (único con id). JS lo rellena y clona. */}
+                    <div id="marquee-slide" className="marquee__group">
+                        {/* Unidad = texto + separador */}
+                        <span className="marquee__unit">
+                            <span className="marquee__item">{aviso}</span>
+                            <span className="marquee__sep" aria-hidden="true" />
+                        </span>
+                    </div>
+                </div>
             </div>
 
             {/* Barra principal */}
